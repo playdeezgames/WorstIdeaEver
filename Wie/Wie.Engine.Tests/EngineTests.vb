@@ -7,7 +7,14 @@ Namespace Wie.Engine.Tests
         <Fact>
         Sub ShouldInitiallyBeInARunningState()
             Dim subject As IEngine = New WieEngine()
-            subject.IsRunning().ShouldBe(True)
+            subject.IsRunning.ShouldBe(True)
+        End Sub
+        <Fact>
+        Sub ShouldInitiallyGiveSomeSortOfWelcomingOutput()
+            Dim subject As IEngine = New WieEngine()
+            Dim result As IEnumerable(Of String) = subject.ReceiveOutput
+            result.ShouldNotBeNull
+            result.ShouldNotBeEmpty
         End Sub
     End Class
 End Namespace

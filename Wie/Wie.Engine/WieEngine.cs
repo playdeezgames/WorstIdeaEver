@@ -13,7 +13,10 @@ namespace Wie.Engine
 
         public IEnumerable<string> ReceiveOutput()
         {
-            throw new NotImplementedException();
+            return new string[] 
+            { 
+                "Welcome to the Worst Idea Ever!"
+            };
         }
 
         public void SendInput(string input)
