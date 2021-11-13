@@ -16,6 +16,13 @@ Namespace Wie.Engine.Tests
             result.ShouldNotBeNull
             result.ShouldNotBeEmpty
         End Sub
+        <Fact>
+        Sub ShouldAcceptInput()
+            Dim subject As IEngine = New WieEngine()
+            Should.NotThrow(Sub()
+                                subject.SendInput("whatever")
+                            End Sub)
+        End Sub
     End Class
 End Namespace
 

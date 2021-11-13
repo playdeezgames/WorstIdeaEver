@@ -21,7 +21,7 @@ namespace Wie.Engine
 
         public void SendInput(string input)
         {
-            throw new NotImplementedException();
+            //do nothing
         }
     }
 }
