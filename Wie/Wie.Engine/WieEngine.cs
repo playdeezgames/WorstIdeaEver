@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Wie.Data;
 
 namespace Wie.Engine
 {
     public class WieEngine : IEngine
     {
         private EngineState? _engineState = EngineState.Welcome;
+        private IDataContext _dataContext;
         private readonly Dictionary<EngineState, Func<IEnumerable<string>>> _outputters = new Dictionary<EngineState, Func<IEnumerable<string>>>()
         { 
             [EngineState.Welcome] = WelcomeState.ShowState,
@@ -18,6 +20,10 @@ namespace Wie.Engine
             [EngineState.MainMenu] = MainMenuState.HandleInput,
             [EngineState.ConfirmQuit] = ConfirmQuitState.HandleInput
         };
+        public WieEngine(IDataContext dataContext)
+        {
+            _dataContext = dataContext ?? throw new ArgumentNullException(nameof(dataContext));
+        }
 
         public bool IsRunning()
         {

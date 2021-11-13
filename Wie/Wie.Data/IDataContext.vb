@@ -1,5 +1,4 @@
-Namespace Wie.Data
-    Public Interface IDataContext
+Public Interface IDataContext
 
-    End Interface
-End Namespace
+End Interface
+

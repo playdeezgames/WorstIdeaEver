@@ -1,5 +1,7 @@
 ﻿open Wie
 open Wie.Engine
+open Wie.Data
+
 type Inputter() =
     interface IInputter with
         member this.Read() = 
@@ -15,7 +17,7 @@ type Outputter() =
 
 [<EntryPoint>]
 let main _ =
-    let runner:IRunner = Runner(Inputter(), Outputter()) :> IRunner
-    let engine:IEngine = WieEngine() :> IEngine
-    runner.Run(engine)
+    DataContext() :> IDataContext
+    |> WieEngine  :> IEngine
+    |> (Runner(Inputter(), Outputter()) :> IRunner).Run
     0
