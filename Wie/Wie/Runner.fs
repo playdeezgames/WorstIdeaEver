@@ -1,6 +1,5 @@
 ﻿namespace Wie
 open Wie.Engine
-open System
 
 type public Runner(inputter: IInputter, outputter:IOutputter) = 
     interface IRunner with

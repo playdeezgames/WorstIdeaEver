@@ -11,7 +11,7 @@ type Outputter() =
             |> Seq.iter System.Console.WriteLine
 
 [<EntryPoint>]
-let main argv =
+let main _ =
     let runner:IRunner = Runner(Inputter(), Outputter()) :> IRunner
     let engine:IEngine = WieEngine() :> IEngine
     runner.Run(engine)
