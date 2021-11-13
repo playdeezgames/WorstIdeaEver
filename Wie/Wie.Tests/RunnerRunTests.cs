@@ -12,16 +12,19 @@ namespace Wie.Tests
         [Fact]
         public void ShouldStopImmediatelyWhenTheEngineIsNotRunning()
         {
+            Mock<IInputter> inputter = new();
             Mock<IEngine> engine = new();
             engine.Setup(x => x.IsRunning()).Returns(false);
-            IRunner runner = new Runner();
+            IRunner runner = new Runner(inputter.Object);
             runner.Run(engine.Object);
             engine.Verify(x => x.IsRunning(), Times.AtLeastOnce());
             engine.VerifyNoOtherCalls();
+            inputter.VerifyNoOtherCalls();
         }
         [Fact]
         public void ShouldCallOutputAndInputMethodsAsLongAsTheEngineRuns()
         {
+            Mock<IInputter> inputter = new();
             List<bool> isRunningResults = new List<bool>() { true, true, false };
             Mock<IEngine> engine = new();
             engine.Setup(x => x.IsRunning()).Returns(()=> 
@@ -30,12 +33,14 @@ namespace Wie.Tests
                 isRunningResults.RemoveAt(0);
                 return result;
             });
-            IRunner runner = new Runner();
+            IRunner runner = new Runner(inputter.Object);
             runner.Run(engine.Object);
             engine.Verify(x => x.IsRunning(), Times.Exactly(3));
             engine.Verify(x => x.ReceiveOutput(), Times.Exactly(2));
             engine.Verify(x => x.SendInput(It.IsAny<string>()), Times.Exactly(2));
             engine.VerifyNoOtherCalls();
+            inputter.Verify(x => x.Read(), Times.Exactly(2));
+            inputter.VerifyNoOtherCalls();
         }
     }
 }
