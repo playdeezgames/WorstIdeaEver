@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Wie.Data;
 
 namespace Wie.Engine
 {
     internal static class WelcomeState
     {
-        internal static IEnumerable<string> ShowState()
+        internal static IEnumerable<string> ShowState(IDataContext context)
         {
             return new string[] 
             { 
@@ -15,7 +16,7 @@ namespace Wie.Engine
             };
         }
 
-        internal static EngineState? HandleInput(string line)
+        internal static EngineState? HandleInput(IDataContext context, string line)
         {
             return EngineState.MainMenu;
         }
