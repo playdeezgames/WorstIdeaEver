@@ -1,5 +1,5 @@
 ﻿namespace Wie
 
 type IInputter =
-    abstract member Read : unit -> string
+    abstract member Read : unit -> string 
 
