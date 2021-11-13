@@ -6,7 +6,7 @@ namespace Wie.Engine
 {
     internal static class WelcomeState
     {
-        internal static IEnumerable<string> Write()
+        internal static IEnumerable<string> ShowState()
         {
             return new string[] 
             { 
@@ -15,7 +15,7 @@ namespace Wie.Engine
             };
         }
 
-        internal static EngineState? Read(string line)
+        internal static EngineState? HandleInput(string line)
         {
             return EngineState.MainMenu;
         }

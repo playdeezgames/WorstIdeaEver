@@ -7,6 +7,7 @@ namespace Wie.Engine
     internal enum EngineState
     {
         Welcome,
-        MainMenu
+        MainMenu,
+        ConfirmQuit
     }
 }

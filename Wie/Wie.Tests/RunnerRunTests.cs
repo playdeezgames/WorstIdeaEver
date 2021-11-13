@@ -38,8 +38,8 @@ namespace Wie.Tests
             IRunner runner = new Runner(inputter.Object, outputter.Object);
             runner.Run(engine.Object);
             engine.Verify(x => x.IsRunning(), Times.Exactly(3));
-            engine.Verify(x => x.ReceiveOutput(), Times.Exactly(2));
-            engine.Verify(x => x.SendInput(It.IsAny<string>()), Times.Exactly(2));
+            engine.Verify(x => x.ShowState(), Times.Exactly(2));
+            engine.Verify(x => x.HandleInput(It.IsAny<string>()), Times.Exactly(2));
             engine.VerifyNoOtherCalls();
             inputter.Verify(x => x.Read(), Times.Exactly(2));
             inputter.VerifyNoOtherCalls();

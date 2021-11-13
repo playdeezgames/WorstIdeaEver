@@ -5,6 +5,7 @@ type public Runner(inputter: IInputter, outputter:IOutputter) =
     interface IRunner with
         member this.Run(engine:IEngine) : unit =
             while engine.IsRunning() do
-                engine.ReceiveOutput()
+                engine.ShowState()
                 |> outputter.Write
-                engine.SendInput(inputter.Read())
+                inputter.Read()
+                |> engine.HandleInput

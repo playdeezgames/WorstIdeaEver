@@ -2,7 +2,10 @@
 open Wie.Engine
 type Inputter() =
     interface IInputter with
-        member this.Read() = System.Console.ReadLine()
+        member this.Read() = 
+            System.Console.WriteLine()
+            System.Console.Write(">")
+            System.Console.ReadLine()
 
 type Outputter() =
     interface IOutputter with

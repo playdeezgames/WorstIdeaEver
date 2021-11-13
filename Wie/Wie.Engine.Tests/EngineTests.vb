@@ -11,7 +11,7 @@ Namespace Wie.Engine.Tests
         <Fact>
         Sub ShouldInitiallyGiveSomeSortOfWelcomingOutput()
             Dim subject As IEngine = New WieEngine()
-            Dim result As IEnumerable(Of String) = subject.ReceiveOutput
+            Dim result As IEnumerable(Of String) = subject.ShowState
             result.ShouldNotBeNull
             result.ShouldNotBeEmpty
         End Sub
@@ -19,7 +19,7 @@ Namespace Wie.Engine.Tests
         Sub ShouldAcceptInput()
             Dim subject As IEngine = New WieEngine()
             Should.NotThrow(Sub()
-                                subject.SendInput("whatever")
+                                subject.HandleInput("whatever")
                             End Sub)
         End Sub
     End Class

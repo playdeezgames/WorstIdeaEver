@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Wie.Engine
 {
     internal static class MainMenuState
     {
-        internal static IEnumerable<string> Write()
+        internal static IEnumerable<string> ShowState()
         {
-            throw new NotImplementedException();
+            return new string[] 
+            { 
+                "",
+                "Main Menu:",
+                "1) Start/Continue",
+                "0) Quit"
+            };
         }
 
-        internal static EngineState? Read(string line)
+        internal static EngineState? HandleInput(string line)
         {
-            throw new NotImplementedException();
+            switch(line)
+            {
+                case "1":
+                    return EngineState.MainMenu;
+                case "0":
+                    return EngineState.ConfirmQuit;
+                default:
+                    return EngineState.MainMenu;
+            }
         }
     }
 }

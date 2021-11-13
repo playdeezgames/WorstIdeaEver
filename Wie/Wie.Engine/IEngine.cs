@@ -4,8 +4,8 @@ namespace Wie.Engine
 {
     public interface IEngine
     {
-        IEnumerable<string> ReceiveOutput();
-        void SendInput(string input);
+        IEnumerable<string> ShowState();
+        void HandleInput(string input);
         bool IsRunning();
     }
 }
