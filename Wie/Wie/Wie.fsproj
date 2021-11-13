@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="IInputter.fs" />
+    <Compile Include="IOutputter.fs" />
     <Compile Include="IRunner.fs" />
     <Compile Include="Runner.fs" />
     <Compile Include="Program.fs" />
