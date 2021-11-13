@@ -1,4 +1,4 @@
 ﻿namespace Wie
 
 type IOutputter =
-    abstract member Write : string -> unit
+    abstract member Write : string seq -> unit
