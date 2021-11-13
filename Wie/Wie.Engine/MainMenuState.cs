@@ -21,7 +21,7 @@ namespace Wie.Engine
             switch(line)
             {
                 case "1":
-                    return EngineState.MainMenu;
+                    return EngineState.ChooseWorld;
                 case "0":
                     return EngineState.ConfirmQuit;
                 default:

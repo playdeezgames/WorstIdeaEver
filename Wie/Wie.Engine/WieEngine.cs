@@ -10,15 +10,17 @@ namespace Wie.Engine
         private readonly IDataContext _dataContext;
         private readonly Dictionary<EngineState, Func<IDataContext, IEnumerable<string>>> _outputters = new Dictionary<EngineState, Func<IDataContext, IEnumerable<string>>>()
         { 
-            [EngineState.Welcome] = WelcomeState.ShowState,
+            [EngineState.ChooseWorld] = ChooseWorldState.ShowState,
+            [EngineState.ConfirmQuit] = ConfirmQuitState.ShowState,
             [EngineState.MainMenu] = MainMenuState.ShowState,
-            [EngineState.ConfirmQuit] = ConfirmQuitState.ShowState
+            [EngineState.Welcome] = WelcomeState.ShowState,
         };
         private readonly Dictionary<EngineState, Func<IDataContext, string, EngineState?>> _inputters = new Dictionary<EngineState, Func<IDataContext, string, EngineState?>>()
         {
-            [EngineState.Welcome] = WelcomeState.HandleInput,
+            [EngineState.ChooseWorld] = ChooseWorldState.HandleInput,
+            [EngineState.ConfirmQuit] = ConfirmQuitState.HandleInput,
             [EngineState.MainMenu] = MainMenuState.HandleInput,
-            [EngineState.ConfirmQuit] = ConfirmQuitState.HandleInput
+            [EngineState.Welcome] = WelcomeState.HandleInput,
         };
         public WieEngine(IDataContext dataContext)
         {

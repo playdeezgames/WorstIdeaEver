@@ -8,6 +8,7 @@ namespace Wie.Engine
     {
         Welcome,
         MainMenu,
-        ConfirmQuit
+        ConfirmQuit,
+        ChooseWorld
     }
 }
