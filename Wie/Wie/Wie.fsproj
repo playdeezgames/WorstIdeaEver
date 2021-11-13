@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Wie.Engine\Wie.Engine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.1" />
+  </ItemGroup>
+
 </Project>
