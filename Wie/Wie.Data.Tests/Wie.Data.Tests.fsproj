@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="DataContextTests.fs" />
+    <Compile Include="OpenWorldTests.fs" />
+    <Compile Include="CloseWorldTests.fs" />
+    <Compile Include="GetPlayerCharactersTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
