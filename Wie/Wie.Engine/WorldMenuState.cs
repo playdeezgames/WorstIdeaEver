@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Wie.Data;
 
 namespace Wie.Engine
@@ -7,14 +8,16 @@ namespace Wie.Engine
     {
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
-            return new string[]
+            List<string> lines = new List<string>();
+            lines.Add("");
+            lines.Add("World Menu:");
+            if(context.GetPlayerCharacters().Any())
             {
-                "",
-                "World Menu:",
-                "1) Existing Character",
-                "2) New Character",
-                "0) Leave World"
-            };
+                lines.Add("1) Existing Character");
+            }
+            lines.Add("2) New Character");
+            lines.Add("0) Leave World");
+            return lines;
         }
 
         internal static EngineState? HandleInput(IDataContext context, string line)

@@ -19,7 +19,7 @@ Public Class DataContext
 
     Public Function GetPlayerCharacters() As List(Of IPlayerCharacter) Implements IDataContext.GetPlayerCharacters
         If _connection IsNot Nothing Then
-            Return New List(Of IPlayerCharacter)
+            Return PlayerCharacter.All(_connection)
         End If
         Throw New NotImplementedException
     End Function
