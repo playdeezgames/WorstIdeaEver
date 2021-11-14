@@ -23,4 +23,11 @@ Public Class DataContext
         End If
         Throw New NotImplementedException
     End Function
+
+    Public Function CreatePlayerCharacter(name As String) As IPlayerCharacter Implements IDataContext.CreatePlayerCharacter
+        If _connection IsNot Nothing Then
+            Return PlayerCharacter.Create(_connection, name.Trim())
+        End If
+        Throw New NotImplementedException()
+    End Function
 End Class

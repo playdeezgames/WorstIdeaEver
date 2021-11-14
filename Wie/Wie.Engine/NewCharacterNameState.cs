@@ -20,7 +20,14 @@ namespace Wie.Engine
         [InputHandler(EngineState.NewCharacterName)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
-            return EngineState.WorldMenu;
+            if(string.IsNullOrEmpty(line))
+            {
+                return EngineState.WorldMenu;
+            }
+            else
+            {
+                return EngineState.WorldMenu;
+            }
         }
     }
 }

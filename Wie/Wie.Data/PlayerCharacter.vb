@@ -39,4 +39,10 @@ Friend Class PlayerCharacter
         End Using
         Return result
     End Function
+    Friend Shared Function Create(connection As SqliteConnection, name As String) As IPlayerCharacter
+        If Not String.IsNullOrEmpty(name) Then
+            Return Nothing
+        End If
+        Throw New ArgumentException(NameOf(name))
+    End Function
 End Class
