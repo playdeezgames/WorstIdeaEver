@@ -35,10 +35,10 @@ namespace Wie.Engine
             {
                 foreach (var member in type.GetMembers(BindingFlags.Static | BindingFlags.NonPublic))
                 {
-                    var shower = member.GetCustomAttribute<InputHandlerAttribute>();
-                    if (shower != null)
+                    var handler = member.GetCustomAttribute<InputHandlerAttribute>();
+                    if (handler != null)
                     {
-                        _inputters[shower.EngineState] = (dataContext, line) =>
+                        _inputters[handler.EngineState] = (dataContext, line) =>
                             (EngineState?)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, line });
                     }
                 }
