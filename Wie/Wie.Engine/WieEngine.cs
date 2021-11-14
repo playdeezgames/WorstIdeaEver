@@ -14,6 +14,7 @@ namespace Wie.Engine
             [EngineState.ConfirmQuit] = ConfirmQuitState.ShowState,
             [EngineState.MainMenu] = MainMenuState.ShowState,
             [EngineState.Welcome] = WelcomeState.ShowState,
+            [EngineState.WorldMenu] = WorldMenuState.ShowState,
         };
         private readonly Dictionary<EngineState, Func<IDataContext, string, EngineState?>> _inputters = new Dictionary<EngineState, Func<IDataContext, string, EngineState?>>()
         {
@@ -21,6 +22,7 @@ namespace Wie.Engine
             [EngineState.ConfirmQuit] = ConfirmQuitState.HandleInput,
             [EngineState.MainMenu] = MainMenuState.HandleInput,
             [EngineState.Welcome] = WelcomeState.HandleInput,
+            [EngineState.WorldMenu] = WorldMenuState.HandleInput,
         };
         public WieEngine(IDataContext dataContext)
         {

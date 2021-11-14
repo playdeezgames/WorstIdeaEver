@@ -30,7 +30,7 @@ namespace Wie.Engine
                 case "4":
                 case "5":
                     context.OpenWorld($"World{line}");
-                    return EngineState.ChooseWorld;
+                    return EngineState.WorldMenu;
                 case "0":
                     return EngineState.MainMenu;
                 default:

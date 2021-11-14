@@ -3,16 +3,17 @@ using Wie.Data;
 
 namespace Wie.Engine
 {
-    internal class ConfirmQuitState
+    internal class WorldMenuState
     {
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
             return new string[]
             {
                 "",
-                "Are you sure you want to quit?",
-                "1) Yes",
-                "0) No"
+                "World Menu:",
+                "1) Existing Character",
+                "2) New Character",
+                "0) Leave World"
             };
         }
 
@@ -20,12 +21,11 @@ namespace Wie.Engine
         {
             switch (line)
             {
-                case "1":
-                    return null;
-                case "0":
-                    return EngineState.MainMenu;
+                case "0"://TODO: make a confirm step
+                    context.CloseWorld();
+                    return EngineState.ChooseWorld;
                 default:
-                    return EngineState.ConfirmQuit;
+                    return EngineState.WorldMenu;
             }
         }
     }

@@ -9,6 +9,7 @@ namespace Wie.Engine
         Welcome,
         MainMenu,
         ConfirmQuit,
-        ChooseWorld
+        ChooseWorld,
+        WorldMenu
     }
 }
