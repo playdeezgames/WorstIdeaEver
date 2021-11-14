@@ -5,6 +5,7 @@ namespace Wie.Engine
 {
     internal static class MainMenuState
     {
+        [StateShower(EngineState.MainMenu)]
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
             return new string[] 
@@ -16,6 +17,7 @@ namespace Wie.Engine
             };
         }
 
+        [InputHandler(EngineState.MainMenu)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
             switch(line)

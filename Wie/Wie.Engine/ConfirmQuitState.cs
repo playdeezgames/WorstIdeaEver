@@ -5,6 +5,7 @@ namespace Wie.Engine
 {
     internal class ConfirmQuitState
     {
+        [StateShower(EngineState.ConfirmQuit)]
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
             return new string[]
@@ -16,6 +17,7 @@ namespace Wie.Engine
             };
         }
 
+        [InputHandler(EngineState.ConfirmQuit)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
             switch (line)

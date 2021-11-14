@@ -10,6 +10,7 @@ namespace Wie.Engine
         MainMenu,
         ConfirmQuit,
         ChooseWorld,
-        WorldMenu
+        WorldMenu,
+        NewCharacterName
     }
 }

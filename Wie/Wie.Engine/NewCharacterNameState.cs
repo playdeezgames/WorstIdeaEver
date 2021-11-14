@@ -5,22 +5,22 @@ using Wie.Data;
 
 namespace Wie.Engine
 {
-    internal static class WelcomeState
+    internal class NewCharacterNameState
     {
-        [StateShower(EngineState.Welcome)]
+        [StateShower(EngineState.NewCharacterName)]
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
-            return new string[] 
-            { 
-                "Welcome to the Worst Idea Ever!",
-                "Press RETURN"
+            return new string[]
+            {
+                "",
+                "New character name:",
             };
         }
 
-        [InputHandler(EngineState.Welcome)]
+        [InputHandler(EngineState.NewCharacterName)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
-            return EngineState.MainMenu;
+            return EngineState.WorldMenu;
         }
     }
 }

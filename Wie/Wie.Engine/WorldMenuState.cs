@@ -6,12 +6,15 @@ namespace Wie.Engine
 {
     internal class WorldMenuState
     {
+        [StateShower(EngineState.WorldMenu)]
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
-            List<string> lines = new List<string>();
-            lines.Add("");
-            lines.Add("World Menu:");
-            if(context.GetPlayerCharacters().Any())
+            List<string> lines = new List<string>
+            {
+                "",
+                "World Menu:"
+            };
+            if (context.GetPlayerCharacters().Any())
             {
                 lines.Add("1) Existing Character");
             }
@@ -20,6 +23,7 @@ namespace Wie.Engine
             return lines;
         }
 
+        [InputHandler(EngineState.WorldMenu)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
             switch (line)
@@ -27,6 +31,8 @@ namespace Wie.Engine
                 case "0"://TODO: make a confirm step
                     context.CloseWorld();
                     return EngineState.ChooseWorld;
+                case "2":
+                    return EngineState.NewCharacterName;
                 default:
                     return EngineState.WorldMenu;
             }

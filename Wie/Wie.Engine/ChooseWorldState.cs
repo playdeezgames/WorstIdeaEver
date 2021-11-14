@@ -5,6 +5,7 @@ namespace Wie.Engine
 {
     internal static class ChooseWorldState
     {
+        [StateShower(EngineState.ChooseWorld)]
         internal static IEnumerable<string> ShowState(IDataContext context)
         {
             return new string[]
@@ -20,6 +21,7 @@ namespace Wie.Engine
             };
         }
 
+        [InputHandler(EngineState.ChooseWorld)]
         internal static EngineState? HandleInput(IDataContext context, string line)
         {
             switch (line)
