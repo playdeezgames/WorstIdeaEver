@@ -14,7 +14,7 @@ namespace Wie.Engine
                 "",
                 "World Menu:"
             };
-            if (context.GetPlayerCharacters().Any())
+            if (context.PlayerCharacters.All.Any())
             {
                 lines.Add("1) Existing Character");
             }
