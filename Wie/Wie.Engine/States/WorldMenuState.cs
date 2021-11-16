@@ -30,9 +30,11 @@ namespace Wie.Engine
         {
             switch (line)
             {
-                case "0"://TODO: make a confirm step
+                case "0":
                     context.CloseWorld();
                     return EngineState.ChooseWorld.Alone();
+                case "1":
+                    return EngineState.ChooseCharacter.Alone();
                 case "2":
                     return EngineState.NewCharacterName.Alone();
                 default:

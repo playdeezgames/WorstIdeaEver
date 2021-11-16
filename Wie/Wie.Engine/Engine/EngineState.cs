@@ -12,6 +12,7 @@ namespace Wie.Engine
         ChooseWorld,
         WorldMenu,
         NewCharacterName,
-        InPlay
+        ChooseCharacter,
+        PlayerCharacterMenu
     }
 }

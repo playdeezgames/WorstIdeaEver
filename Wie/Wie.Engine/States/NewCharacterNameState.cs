@@ -31,7 +31,7 @@ namespace Wie.Engine
                 if(playerCharacter!=null)
                 {
                     game.PlayerCharacterId = playerCharacter.Id;
-                    return EngineState.WorldMenu.Alone();
+                    return EngineState.PlayerCharacterMenu.Alone();
                 }
                 return EngineState.WorldMenu.WithMessages("","There is already a player character with that name.");
             }
