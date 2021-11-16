@@ -26,6 +26,8 @@ namespace Wie.Engine
             }
             else
             {
+                var playerCharacter = context.PlayerCharacters.Create(line);
+                context.PlayerCharacterId = playerCharacter.Id;
                 return EngineState.WorldMenu;
             }
         }

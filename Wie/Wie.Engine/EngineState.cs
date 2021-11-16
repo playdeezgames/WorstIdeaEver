@@ -11,6 +11,7 @@ namespace Wie.Engine
         ConfirmQuit,
         ChooseWorld,
         WorldMenu,
-        NewCharacterName
+        NewCharacterName,
+        InPlay
     }
 }

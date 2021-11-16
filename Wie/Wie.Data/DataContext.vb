@@ -4,11 +4,21 @@ Public Class DataContext
     Implements IDataContext
     Private _connection As SqliteConnection = Nothing
     Private _playerCharacters As IPlayerCharacters = Nothing
+    Private _playerCharacterId As Long?
 
     Public ReadOnly Property PlayerCharacters As IPlayerCharacters Implements IDataContext.PlayerCharacters
         Get
             Return _playerCharacters
         End Get
+    End Property
+
+    Public Property PlayerCharacterId As Long? Implements IDataContext.PlayerCharacterId
+        Get
+            Return _playerCharacterId
+        End Get
+        Set(value As Long?)
+            _playerCharacterId = value
+        End Set
     End Property
 
     Public Sub OpenWorld(worldName As String) Implements IDataContext.OpenWorld

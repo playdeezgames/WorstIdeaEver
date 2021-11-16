@@ -9,4 +9,7 @@ open Wie.Data
 let ``OpenWorld.Should not throw an exception when opening the world`` () =
     let subject : DataContext = DataContext()
     Should.NotThrow(fun()->subject.OpenWorld(System.Guid.NewGuid().ToString()))
+    subject.PlayerCharacterId.ShouldBeNull() |> ignore
+    subject.PlayerCharacters.ShouldNotBeNull() |> ignore
+
 
