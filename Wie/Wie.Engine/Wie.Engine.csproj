@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wie.Data\Wie.Data.vbproj" />
+    <ProjectReference Include="..\Wie.Game\Wie.Game.fsproj" />
   </ItemGroup>
 
 </Project>
