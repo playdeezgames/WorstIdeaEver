@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Wie.Engine
+﻿namespace Wie.Engine
 {
     internal enum EngineState
     {

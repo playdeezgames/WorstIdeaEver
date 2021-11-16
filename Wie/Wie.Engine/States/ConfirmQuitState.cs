@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Wie.Data;
 using Wie.Game;
-using System;
-using System.Linq;
 
 namespace Wie.Engine
 {

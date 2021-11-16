@@ -10,8 +10,8 @@ namespace Wie.Engine
         [StateShower(EngineState.MainMenu)]
         internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
-            return new string[] 
-            { 
+            return new string[]
+            {
                 "",
                 "Main Menu:",
                 "1) Start/Continue",
@@ -22,7 +22,7 @@ namespace Wie.Engine
         [InputHandler(EngineState.MainMenu)]
         internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
-            switch(line)
+            switch (line)
             {
                 case "1":
                     return EngineState.ChooseWorld.Alone();

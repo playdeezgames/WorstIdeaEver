@@ -11,12 +11,12 @@ namespace Wie.Engine
         internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
             List<string> output = new List<string>
-            { 
+            {
                 "",
                 "Choose Character:"
             };
             int index = 1;
-            foreach(var playerCharacter in context.PlayerCharacters.All)
+            foreach (var playerCharacter in context.PlayerCharacters.All)
             {
                 output.Add($"{index}) {playerCharacter.Name}");
                 index++;
@@ -28,22 +28,22 @@ namespace Wie.Engine
         [InputHandler(EngineState.ChooseCharacter)]
         internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
-            switch(line)
+            switch (line)
             {
                 case "0":
                     return EngineState.WorldMenu.Alone();
                 default:
-                    if(int.TryParse(line, out var index))
+                    if (int.TryParse(line, out var index))
                     {
                         index--;//menu is 1 based... list is 0 based
-                        if(index>=0 && index<context.PlayerCharacters.All.Count)
+                        if (index >= 0 && index < context.PlayerCharacters.All.Count)
                         {
                             var playerCharacter = context.PlayerCharacters.All[index];
                             game.PlayerCharacterId = playerCharacter.Id;
                             return EngineState.PlayerCharacterMenu.Alone();
                         }
                     }
-                    return EngineState.ChooseCharacter.WithMessages("","Please make a valid selection.");
+                    return EngineState.ChooseCharacter.WithMessages("", "Please make a valid selection.");
             }
         }
     }

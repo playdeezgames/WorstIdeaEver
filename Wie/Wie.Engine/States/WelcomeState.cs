@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Wie.Data;
 using Wie.Game;
 
@@ -11,8 +10,8 @@ namespace Wie.Engine
         [StateShower(EngineState.Welcome)]
         internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
-            return new string[] 
-            { 
+            return new string[]
+            {
                 "Welcome to the Worst Idea Ever!",
                 "Press RETURN"
             };
