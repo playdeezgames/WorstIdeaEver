@@ -1,6 +1,7 @@
 ﻿open Wie
 open Wie.Engine
 open Wie.Data
+open Wie.Game
 
 type Inputter() =
     interface IInputter with
@@ -17,7 +18,10 @@ type Outputter() =
 
 [<EntryPoint>]
 let main _ =
-    DataContext() :> IDataContext
+    (
+        DataContext() :> IDataContext, 
+        WieGame() :> IGame
+    )
     |> WieEngine  :> IEngine
     |> (Runner(Inputter(), Outputter()) :> IRunner).Run
     0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Wie.Data;
+using Wie.Game;
 
 namespace Wie.Engine
 {
@@ -10,8 +11,9 @@ namespace Wie.Engine
     {
         private EngineState? _engineState = EngineState.Welcome;
         private readonly IDataContext _dataContext;
-        private readonly Dictionary<EngineState, Func<IDataContext, IEnumerable<string>>> _outputters = new Dictionary<EngineState, Func<IDataContext, IEnumerable<string>>>();
-        private readonly Dictionary<EngineState, Func<IDataContext, string, EngineState?>> _inputters = new Dictionary<EngineState, Func<IDataContext, string, EngineState?>>();
+        private readonly IGame _game;
+        private readonly Dictionary<EngineState, Func<IDataContext, IGame, IEnumerable<string>>> _outputters = new Dictionary<EngineState, Func<IDataContext, IGame, IEnumerable<string>>>();
+        private readonly Dictionary<EngineState, Func<IDataContext, IGame, string, EngineState?>> _inputters = new Dictionary<EngineState, Func<IDataContext, IGame, string, EngineState?>>();
         private void InitializeOutputters()
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -22,8 +24,8 @@ namespace Wie.Engine
                     var shower = member.GetCustomAttribute<StateShowerAttribute>();
                     if(shower!=null)
                     {
-                        _outputters[shower.EngineState] = (dataContext) => 
-                            (IEnumerable<string>)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext });
+                        _outputters[shower.EngineState] = (dataContext, game) => 
+                            (IEnumerable<string>)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, game });
                     }
                 }
             }
@@ -38,15 +40,16 @@ namespace Wie.Engine
                     var handler = member.GetCustomAttribute<InputHandlerAttribute>();
                     if (handler != null)
                     {
-                        _inputters[handler.EngineState] = (dataContext, line) =>
-                            (EngineState?)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, line });
+                        _inputters[handler.EngineState] = (dataContext, game, line) =>
+                            (EngineState?)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, game, line });
                     }
                 }
             }
         }
-        public WieEngine(IDataContext dataContext)
+        public WieEngine(IDataContext dataContext, IGame game)
         {
             _dataContext = dataContext ?? throw new ArgumentNullException(nameof(dataContext));
+            _game = game ?? throw new ArgumentNullException(nameof(game));
             InitializeOutputters();
             InitializeInputters();
         }
@@ -58,12 +61,12 @@ namespace Wie.Engine
 
         public IEnumerable<string> ShowState()
         {
-            return _outputters[_engineState.Value](_dataContext);
+            return _outputters[_engineState.Value](_dataContext, _game);
         }
 
         public void HandleInput(string input)
         {
-            _engineState = _inputters[_engineState.Value](_dataContext, input);
+            _engineState = _inputters[_engineState.Value](_dataContext, _game, input);
         }
     }
 }
