@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Wie.Data;
 using Wie.Game;
+using System;
+using System.Linq;
 
 namespace Wie.Engine
 {
@@ -19,16 +21,16 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.ConfirmQuit)]
-        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
+        internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
             switch (line)
             {
                 case "1":
-                    return null;
+                    return new Tuple<EngineState?, IEnumerable<string>>(null, Array.Empty<string>());
                 case "0":
-                    return EngineState.MainMenu;
+                    return EngineState.MainMenu.Alone();
                 default:
-                    return EngineState.ConfirmQuit;
+                    return EngineState.ConfirmQuit.Alone();
             }
         }
     }

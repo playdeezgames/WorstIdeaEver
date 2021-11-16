@@ -9,3 +9,4 @@ type public Runner(inputter: IInputter, outputter:IOutputter) =
                 |> outputter.Write
                 inputter.Read()
                 |> engine.HandleInput
+                |> outputter.Write

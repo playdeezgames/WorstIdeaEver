@@ -5,7 +5,7 @@ namespace Wie.Engine
     public interface IEngine
     {
         IEnumerable<string> ShowState();
-        void HandleInput(string input);
+        IEnumerable<string> HandleInput(string input);
         bool IsRunning();
     }
 }

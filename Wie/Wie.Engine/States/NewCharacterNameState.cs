@@ -19,11 +19,11 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.NewCharacterName)]
-        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
+        internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
             if(string.IsNullOrEmpty(line))
             {
-                return EngineState.WorldMenu;
+                return EngineState.WorldMenu.Alone();
             }
             else
             {
@@ -31,9 +31,9 @@ namespace Wie.Engine
                 if(playerCharacter!=null)
                 {
                     context.PlayerCharacterId = playerCharacter.Id;
-                    return EngineState.WorldMenu;
+                    return EngineState.WorldMenu.Alone();
                 }
-                return EngineState.WorldMenu;
+                return EngineState.WorldMenu.Alone();
             }
         }
     }

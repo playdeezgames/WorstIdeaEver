@@ -13,7 +13,7 @@ namespace Wie.Engine
         private readonly IDataContext _dataContext;
         private readonly IGame _game;
         private readonly Dictionary<EngineState, Func<IDataContext, IGame, IEnumerable<string>>> _outputters = new Dictionary<EngineState, Func<IDataContext, IGame, IEnumerable<string>>>();
-        private readonly Dictionary<EngineState, Func<IDataContext, IGame, string, EngineState?>> _inputters = new Dictionary<EngineState, Func<IDataContext, IGame, string, EngineState?>>();
+        private readonly Dictionary<EngineState, Func<IDataContext, IGame, string, Tuple<EngineState?,IEnumerable<string>>>> _inputters = new Dictionary<EngineState, Func<IDataContext, IGame, string, Tuple<EngineState?,IEnumerable<string>>>>();
         private void InitializeOutputters()
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -41,7 +41,7 @@ namespace Wie.Engine
                     if (handler != null)
                     {
                         _inputters[handler.EngineState] = (dataContext, game, line) =>
-                            (EngineState?)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, game, line });
+                            (Tuple<EngineState?, IEnumerable<string>>)type.InvokeMember(member.Name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { dataContext, game, line });
                     }
                 }
             }
@@ -64,9 +64,11 @@ namespace Wie.Engine
             return _outputters[_engineState.Value](_dataContext, _game);
         }
 
-        public void HandleInput(string input)
+        public IEnumerable<string> HandleInput(string input)
         {
-            _engineState = _inputters[_engineState.Value](_dataContext, _game, input);
+            var result = _inputters[_engineState.Value](_dataContext, _game, input);
+            _engineState = result.Item1;
+            return result.Item2;
         }
     }
 }

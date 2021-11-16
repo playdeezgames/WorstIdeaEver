@@ -19,9 +19,9 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.Welcome)]
-        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
+        internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
-            return EngineState.MainMenu;
+            return EngineState.MainMenu.Alone();
         }
     }
 }

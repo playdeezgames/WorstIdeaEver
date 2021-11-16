@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Wie.Data;
 using Wie.Game;
 
@@ -23,7 +24,7 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.ChooseWorld)]
-        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
+        internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
             switch (line)
             {
@@ -33,11 +34,11 @@ namespace Wie.Engine
                 case "4":
                 case "5":
                     context.OpenWorld($"World{line}");
-                    return EngineState.WorldMenu;
+                    return EngineState.WorldMenu.Alone();
                 case "0":
-                    return EngineState.MainMenu;
+                    return EngineState.MainMenu.Alone();
                 default:
-                    return EngineState.ChooseWorld;
+                    return EngineState.ChooseWorld.Alone();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Wie.Data;
 using Wie.Game;
@@ -25,17 +26,17 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.WorldMenu)]
-        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
+        internal static Tuple<EngineState?, IEnumerable<string>> HandleInput(IDataContext context, IGame game, string line)
         {
             switch (line)
             {
                 case "0"://TODO: make a confirm step
                     context.CloseWorld();
-                    return EngineState.ChooseWorld;
+                    return EngineState.ChooseWorld.Alone();
                 case "2":
-                    return EngineState.NewCharacterName;
+                    return EngineState.NewCharacterName.Alone();
                 default:
-                    return EngineState.WorldMenu;
+                    return EngineState.WorldMenu.Alone();
             }
         }
     }
