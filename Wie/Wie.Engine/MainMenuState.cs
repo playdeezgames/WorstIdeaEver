@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Wie.Data;
+using Wie.Game;
 
 namespace Wie.Engine
 {
     internal static class MainMenuState
     {
         [StateShower(EngineState.MainMenu)]
-        internal static IEnumerable<string> ShowState(IDataContext context)
+        internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
             return new string[] 
             { 
@@ -18,7 +19,7 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.MainMenu)]
-        internal static EngineState? HandleInput(IDataContext context, string line)
+        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
         {
             switch(line)
             {

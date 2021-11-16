@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Wie.Data;
+using Wie.Game;
 
 namespace Wie.Engine
 {
     internal class NewCharacterNameState
     {
         [StateShower(EngineState.NewCharacterName)]
-        internal static IEnumerable<string> ShowState(IDataContext context)
+        internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
             return new string[]
             {
@@ -18,7 +19,7 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.NewCharacterName)]
-        internal static EngineState? HandleInput(IDataContext context, string line)
+        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
         {
             if(string.IsNullOrEmpty(line))
             {
@@ -27,7 +28,11 @@ namespace Wie.Engine
             else
             {
                 var playerCharacter = context.PlayerCharacters.Create(line);
-                context.PlayerCharacterId = playerCharacter.Id;
+                if(playerCharacter!=null)
+                {
+                    context.PlayerCharacterId = playerCharacter.Id;
+                    return EngineState.WorldMenu;
+                }
                 return EngineState.WorldMenu;
             }
         }

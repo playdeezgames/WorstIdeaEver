@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Wie.Data;
+using Wie.Game;
 
 namespace Wie.Engine
 {
     internal class WorldMenuState
     {
         [StateShower(EngineState.WorldMenu)]
-        internal static IEnumerable<string> ShowState(IDataContext context)
+        internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
             List<string> lines = new List<string>
             {
@@ -24,7 +25,7 @@ namespace Wie.Engine
         }
 
         [InputHandler(EngineState.WorldMenu)]
-        internal static EngineState? HandleInput(IDataContext context, string line)
+        internal static EngineState? HandleInput(IDataContext context, IGame game, string line)
         {
             switch (line)
             {
