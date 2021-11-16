@@ -33,7 +33,7 @@ namespace Wie.Engine
                     context.PlayerCharacterId = playerCharacter.Id;
                     return EngineState.WorldMenu.Alone();
                 }
-                return EngineState.WorldMenu.Alone();
+                return EngineState.WorldMenu.WithMessages("","There is already a player character with that name.");
             }
         }
     }
