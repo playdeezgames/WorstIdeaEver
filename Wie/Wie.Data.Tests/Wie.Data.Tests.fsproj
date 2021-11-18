@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="CreaturesFindForPlayerCharacterTests.fs" />
     <Compile Include="LocationsCreateTests.fs" />
     <Compile Include="LocationsFindTests.fs" />
     <Compile Include="PlayerCharactersCreateTests.fs" />

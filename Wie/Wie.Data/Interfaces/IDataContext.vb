@@ -3,6 +3,7 @@ Public Interface IDataContext
     Sub CloseWorld()
     ReadOnly Property PlayerCharacters() As IPlayerCharacters
     ReadOnly Property Locations() As ILocations
+    ReadOnly Property Creatures() As ICreatures
 
 End Interface
 

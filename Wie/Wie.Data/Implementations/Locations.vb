@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Data.Sqlite
 
-Public Class Locations
+Friend Class Locations
     Implements ILocations
     Private _connection As SqliteConnection
     Public Sub New(connection As SqliteConnection)
