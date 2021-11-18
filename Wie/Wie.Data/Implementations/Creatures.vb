@@ -14,7 +14,7 @@ Friend Class Creatures
 
     Private Sub AutoCreateTable()
         Dim command As SqliteCommand = _connection.CreateCommand()
-        command.CommandText = "CREATE TABLE IF NOT EXISTS [Creatures]([CreatureId] INTEGER PRIMARY KEY AUTOINCREMENT,[LocationId] INTEGER NOT NULL,[PlayerCharacterId] INTEGER NULL);"
+        command.CommandText = "CREATE TABLE IF NOT EXISTS [Creatures]([CreatureId] INTEGER PRIMARY KEY AUTOINCREMENT,[LocationId] INTEGER NOT NULL UNIQUE,[PlayerCharacterId] INTEGER NULL UNIQUE);"
         command.ExecuteNonQuery()
     End Sub
 
