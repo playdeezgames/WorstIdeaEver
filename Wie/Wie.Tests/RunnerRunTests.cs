@@ -43,7 +43,7 @@ namespace Wie.Tests
             engine.VerifyNoOtherCalls();
             inputter.Verify(x => x.Read(), Times.Exactly(2));
             inputter.VerifyNoOtherCalls();
-            outputter.Verify(x => x.Write(It.IsAny<IEnumerable<string>>()), Times.Exactly(2));
+            outputter.Verify(x => x.Write(It.IsAny<IEnumerable<string>>()), Times.Exactly(4));
             outputter.VerifyNoOtherCalls();
         }
     }
