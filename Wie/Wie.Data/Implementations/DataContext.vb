@@ -23,7 +23,7 @@ Public Class DataContext
         _connection = New SqliteConnection($"Data Source={worldName}.db")
         _connection.Open()
         _playerCharacters = New PlayerCharacters(_connection)
-        _locations = New Locations()
+        _locations = New Locations(_connection)
     End Sub
 
     Public Sub CloseWorld() Implements IDataContext.CloseWorld
