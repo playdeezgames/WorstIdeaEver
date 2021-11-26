@@ -7,14 +7,9 @@ Friend Class Creatures
         _connection = connection
     End Sub
 
-    Public Function FindForPlayerCharacter(playerCharacterId As Long) As ICreature Implements ICreatures.FindForPlayerCharacter
-        AutoCreateTable()
-        Return Nothing
-    End Function
-
     Private Sub AutoCreateTable()
         Dim command As SqliteCommand = _connection.CreateCommand()
-        command.CommandText = "CREATE TABLE IF NOT EXISTS [Creatures]([CreatureId] INTEGER PRIMARY KEY AUTOINCREMENT,[LocationId] INTEGER NOT NULL UNIQUE,[PlayerCharacterId] INTEGER NULL UNIQUE);"
+        command.CommandText = "CREATE TABLE IF NOT EXISTS [Creatures]([CreatureId] INTEGER PRIMARY KEY AUTOINCREMENT,[LocationId] INTEGER NOT NULL UNIQUE);"
         command.ExecuteNonQuery()
     End Sub
 
@@ -23,22 +18,6 @@ Friend Class Creatures
         Dim command As SqliteCommand = _connection.CreateCommand()
         command.CommandText = "INSERT INTO [Creatures]([LocationId]) VALUES($locationid);"
         command.Parameters.AddWithValue("$locationid", locationId)
-        command.ExecuteNonQuery()
-
-        command = _connection.CreateCommand()
-        command.CommandText = "SELECT [CreatureId] FROM [Creatures] WHERE [LocationId]=$locationid;"
-        command.Parameters.AddWithValue("$locationid", locationId)
-        Dim reader As SqliteDataReader = command.ExecuteReader()
-        reader.Read()
-        Return reader.GetInt64(0)
-    End Function
-
-    Public Function Create(locationId As Long, playerCharacterId As Long) As Long Implements ICreatures.Create
-        AutoCreateTable()
-        Dim command As SqliteCommand = _connection.CreateCommand()
-        command.CommandText = "INSERT INTO [Creatures]([LocationId],[PlayerCharacterId]) VALUES($locationid,$playercharacterid);"
-        command.Parameters.AddWithValue("$locationid", locationId)
-        command.Parameters.AddWithValue("$playercharacterid", playerCharacterId)
         command.ExecuteNonQuery()
 
         command = _connection.CreateCommand()

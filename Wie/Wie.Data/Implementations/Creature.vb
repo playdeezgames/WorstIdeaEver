@@ -16,12 +16,6 @@
         End Get
     End Property
 
-    Public ReadOnly Property PlayerCharacterId As Long? Implements ICreature.PlayerCharacterId
-        Get
-            Return _playerCharacterId
-        End Get
-    End Property
-
     Public ReadOnly Property LocationId As Long Implements ICreature.LocationId
         Get
             Return _locationId
