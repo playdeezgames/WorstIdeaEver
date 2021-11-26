@@ -4,6 +4,8 @@ Public Interface IDataContext
     ReadOnly Property PlayerCharacters() As IPlayerCharacters
     ReadOnly Property Locations() As ILocations
     ReadOnly Property Creatures() As ICreatures
+    ReadOnly Property PlayerCharacterCreatures() As IPlayerCharacterCreatures
+
 
 End Interface
 

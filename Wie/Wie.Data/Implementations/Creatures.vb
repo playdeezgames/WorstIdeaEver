@@ -31,16 +31,12 @@ Friend Class Creatures
     Public Function Find(creatureId As Long) As ICreature Implements ICreatures.Find
         AutoCreateTable()
         Dim command As SqliteCommand = _connection.CreateCommand()
-        command.CommandText = "SELECT [LocationId],[PlayerCharacterId] FROM [Creatures] WHERE [CreatureId]=$creatureid;"
+        command.CommandText = "SELECT [LocationId] FROM [Creatures] WHERE [CreatureId]=$creatureid;"
         command.Parameters.AddWithValue("$creatureid", creatureId)
         Dim reader As SqliteDataReader = command.ExecuteReader()
         If reader.Read() Then
             Dim locationId As Long = reader.GetInt64(0)
-            Dim playerCharacterId As Long? = Nothing
-            If Not reader.IsDBNull(1) Then
-                playerCharacterId = reader.GetInt64(1)
-            End If
-            Return New Creature(creatureId, locationId, playerCharacterId)
+            Return New Creature(creatureId, locationId)
         End If
         Return Nothing
     End Function

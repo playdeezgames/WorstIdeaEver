@@ -12,14 +12,21 @@ namespace Wie.Engine.States
         internal static IEnumerable<string> ShowState(IDataContext context, IGame game)
         {
             var playerCharacter = context.PlayerCharacters.All.Single(x => x.Id == game.PlayerCharacterId.Value);
-            return new string[]
+            var characterId = context.PlayerCharacterCreatures.FindCreatureId(playerCharacter.Id);
+            var result = new List<string>();
+            result.Add("");
+            result.Add($"Name: {playerCharacter.Name}");
+            if(characterId.HasValue)
             {
-                "",
-                $"Name: {playerCharacter.Name}",
-                //"1) Embark",
-                //"2) Delete",
-                "0) Never mind"
-            };
+                result.Add("1) Continue");
+                result.Add("2) Abandon");
+            }
+            else
+            {
+                result.Add("1) Start");
+            }
+            result.Add("0) Never mind");
+            return result;
         }
 
         [InputHandler(EngineState.PlayerCharacterMenu)]

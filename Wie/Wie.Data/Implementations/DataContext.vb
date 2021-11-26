@@ -25,6 +25,12 @@ Public Class DataContext
         End Get
     End Property
 
+    Public ReadOnly Property PlayerCharacterCreatures As IPlayerCharacterCreatures Implements IDataContext.PlayerCharacterCreatures
+        Get
+            Throw New NotImplementedException()
+        End Get
+    End Property
+
     Public Sub OpenWorld(worldName As String) Implements IDataContext.OpenWorld
         CloseWorld()
         _connection = New SqliteConnection($"Data Source={worldName}.db")
